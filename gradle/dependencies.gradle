@@ -1,0 +1,45 @@
+ext {
+    //used libraries versions
+    libVersions =
+            [
+                    servletApi        : '3.1.0',
+                    junit             : '4.12',
+                    gae               : '1.9.54',
+                    googleGradlePlugin: '1.3.2',
+                    jackson           : '2.8.8',
+
+            ]
+
+    //used libraries
+    libs = [
+            servletApi        : "javax.servlet:javax.servlet-api:3.1.0",
+            junit             : "junit:junit:$libVersions.junit",
+            gae               : [
+                    'com.google.appengine:appengine-api-1.0-sdk:+'
+            ],
+            gaeTest           : [
+                    "com.google.appengine:appengine-testing:${libVersions.gae}",
+                    "com.google.appengine:appengine-api-stubs:${libVersions.gae}"
+            ],
+            gaeLabs           : "com.google.appengine:appengine-api-labs:${libVersions.gae}",
+            googleGradlePlugin: "com.google.cloud.tools:appengine-gradle-plugin:${libVersions.googleGradlePlugin}",
+            jackson           : ["com.fasterxml.jackson.core:jackson-annotations:$libVersions.jackson",
+                                 "com.fasterxml.jackson.core:jackson-databind:$libVersions.jackson"
+            ]
+    ]
+
+    //configs
+    config = [
+            gae: [
+                    port           : [
+                            default: 8880,
+                            api: 8881
+                    ],
+                    defaultJvmFlags: [
+                            '-Dappengine.fullscan.seconds=3',
+                            "-Ddatastore.backing_store=$projectDir/appengine-generated/local_db.bin".toString(),
+                            "-Ddatastore.generated_dir=$projectDir/appengine-generated/".toString()
+                    ]
+            ]
+    ]
+}

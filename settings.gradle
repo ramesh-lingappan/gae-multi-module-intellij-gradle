@@ -1,0 +1,5 @@
+rootProject.name = 'MultiModules'
+include 'Commons'
+include 'WebApp'
+include 'API'
+

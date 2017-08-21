@@ -1,0 +1,17 @@
+group 'com.rameshl.demos'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compileOnly libs.servletApi
+
+    compile libs.gae
+    compileOnly libs.gaeLabs
+    testCompileOnly libs.gaeTest
+}
+
+

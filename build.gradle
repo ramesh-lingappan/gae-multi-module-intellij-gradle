@@ -1,0 +1,33 @@
+// dependencies version and config definitions
+apply from: 'gradle/dependencies.gradle'
+
+// project configurations
+allprojects {
+    group 'com.rameshl.demos'
+    version '1.0'
+}
+
+subprojects {
+
+    apply plugin: "java"
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        maven {
+            url 'https://maven-central.storage.googleapis.com'
+        }
+        mavenCentral()
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+
+        compile libs.jackson
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}

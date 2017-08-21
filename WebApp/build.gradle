@@ -1,0 +1,42 @@
+group 'com.rameshl.demos'
+version '1.0'
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        // latest App Engine Gradle tasks
+        classpath libs.googleGradlePlugin
+    }
+}
+
+apply plugin: 'war'                               // standard Web Archive plugin
+apply plugin: 'com.google.cloud.tools.appengine'  // App Engine tasks
+
+dependencies {
+    compileOnly libs.servletApi
+
+    compile libs.gae   // Latest App Engine Api's
+    compileOnly libs.gaeLabs
+    testCompileOnly libs.gaeTest
+
+    // Commons module
+    compile project(":Commons")
+}
+
+// App Engine tasks configuration
+appengine {
+    run {
+        port = config.gae.port.default
+        jvmFlags = config.gae.defaultJvmFlags
+    }
+
+    deploy {   // deploy configuration
+        project =  'project-id'
+        version = 1
+        stopPreviousVersion = false  // default - stop the current version
+        promote = false
+    }
+}
